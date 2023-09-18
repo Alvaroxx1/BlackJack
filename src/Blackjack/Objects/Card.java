@@ -1,4 +1,4 @@
-package Blackjack;
+package Objects;
 
 public class Card {
 
