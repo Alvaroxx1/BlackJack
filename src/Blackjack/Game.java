@@ -2,20 +2,28 @@ package Blackjack;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Dictionary;
+import java.util.Hashtable;
+
 public class Game {
-
+	
 	public static void main(String[] args) {
-		
-		ArrayList<Integer> IDs = new ArrayList<Integer>();
-		IDs.add(1234);
-		IDs.add(34234);
-		IDs.add(23552);
-		Collections.sort(IDs);
-		IDs.remove(2);
-		System.out.println(IDs);
+		Dictionary<String, Integer> dict = new Hashtable<>();
+		dict.put(null, null);
+
 		
 		
 
+	}
+	// Functions
+	static void hit() {;
+	
+	}
+	static void stand() {
+		
+	};
+	static void bet() {
+	
 	}
 
 }
