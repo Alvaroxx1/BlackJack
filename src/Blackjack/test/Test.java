@@ -54,7 +54,7 @@ public class Test {
      * Made by Alvaro
      */
     public void card(){
-		Card mycard = new Card("4","h");
+		Card mycard = new Card("4h");
 		System.out.println(mycard.toString());
     }
 }
