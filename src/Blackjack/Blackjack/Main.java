@@ -12,7 +12,7 @@ public class Main {
 	
 	public static void main (String[] args) {
 		
-		Card mycard = new Card("4h");
+		//Card mycard = new Card("4h");
 
 
 
@@ -20,7 +20,8 @@ public class Main {
 		// Testgin Area
 		Test test = new Test();
 
-		test.card();
+		//test.card();
 		// test.player();
+		test.hand();
 	}
 }

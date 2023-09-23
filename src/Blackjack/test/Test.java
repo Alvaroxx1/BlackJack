@@ -57,4 +57,30 @@ public class Test {
 		Card mycard = new Card("4h");
 		System.out.println(mycard.toString());
     }
+    
+    public void hand() {
+    	Card onecard = new Card("2h");
+    	Card twocard = new Card("3h");
+    	Card threecard = new Card("4h");
+    	
+    	Hand myhand = new Hand();
+    	
+    	// Adding cards to hand
+    	myhand.add(onecard);
+    	myhand.add(twocard);
+    	myhand.add(threecard);
+     	// print my hand
+    	System.out.println(myhand.toString());
+    	
+    	// cleaning hand 
+    	myhand.clean();
+    	
+    	// Addind cards in different order
+    	myhand.add(threecard);
+    	myhand.add(twocard);
+    	myhand.add(onecard);
+    	
+    	// print my hand
+    	System.out.println(myhand.toString());
+    }
 }
