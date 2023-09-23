@@ -1,5 +1,6 @@
 package Blackjack;
-//import Objects.*;
+import Objects.*;
+import test.*;
 
 //import java.util.ArrayList;
 
@@ -11,15 +12,14 @@ public class Main {
 	
 	public static void main (String[] args) {
 		
-		Card mycard = new Card("4","h");
 
-		System.out.println(mycard.toString());
+
+
 		
-
 		// Testgin Area
 		Test test = new Test();
-		test.player();
+
+		test.card();
+		// test.player();
 	}
-
-
 }

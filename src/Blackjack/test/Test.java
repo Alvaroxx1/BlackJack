@@ -11,6 +11,10 @@ public class Test {
     public void test(){
 
     }
+
+    /*
+     * Made by David
+     */
 	public void player (){
 	// Test creando persons
 			Player p1 = new Player("jaime", 10);
@@ -45,4 +49,12 @@ public class Test {
 		           System.out.println(num); 		
 		      }
 		}
+
+    /*
+     * Made by Alvaro
+     */
+    public void card(){
+		Card mycard = new Card("4","h");
+		System.out.println(mycard.toString());
+    }
 }
