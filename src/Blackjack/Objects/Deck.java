@@ -7,12 +7,12 @@ public class Deck {
 			"8","9","T","J","Q","K","A"};
 	private String[] suits = {"d","c","h","s"};
 	
-	private ArrayList<Card> cards;
+	private ArrayList<Card> cards = new ArrayList<Card>();
 	
 	public Deck() {
 		
-		Card mycard = new Card("4h");
-		System.out.println(mycard.toString());
+		//Card mycard = new Card("4h");
+		//System.out.println(mycard.toString());
 		
 		for(int n = 0;n<=3;n++) {
 			for(int i = 2; i<10;i++) {
@@ -23,5 +23,11 @@ public class Deck {
 		
 	}
 	
+	public Card popCard() {
+		return this.cards.remove(0);
+	}
 	
+	public int countCards() {
+		return this.cards.size();
+	}
 }

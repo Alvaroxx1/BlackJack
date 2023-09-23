@@ -15,7 +15,7 @@ public class Hand {
 		this.cards.add(card);
 	}
 	
-	public ArrayList getCards() {
+	public ArrayList<Card> getCards() {
 		return this.cards;
 	}
 	

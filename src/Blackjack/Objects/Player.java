@@ -1,6 +1,8 @@
 package Objects;
 
-public class Player {
+import java.util.Scanner;
+
+public class Player extends Hand {
 
 	private String name;
 	private int balance;
@@ -11,10 +13,20 @@ public class Player {
         this.balance = value;
     }
 	// sobrecarga del constructor
-//	public Player() {
-//		this.name = setName();
-//		this.name = setBalance();
-//	}
+	public Player() {
+        Scanner scannerObjet = new Scanner(System.in);
+        // # a ths pevel it is set to a only one player name
+        // System.out.println("Enter name:");
+        // String name = scannerObjet.nextLine();
+		
+        this.name = "Vaidas";
+  
+        // # at this level te balance is setted by default
+        //System.out.println("Set balance.");
+
+		this.balance = 10;
+        scannerObjet.close();
+	}
 	
 	// ## Funciones de la clase
 	// Setter y getters
