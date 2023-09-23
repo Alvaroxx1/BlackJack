@@ -7,7 +7,7 @@ public class Main {
 	
 	public static void main (String[] args) {
 		
-		Card mycard = new Card("4","h");
+		Card mycard = new Card("4h");
 
 		System.out.println(mycard.toString());
 		
