@@ -3,8 +3,8 @@ package Objects;
 import java.util.ArrayList;
 
 public class Hand {
-	private ArrayList<Card> cards = new ArrayList<Card>();
 	private boolean bust = false;
+	private ArrayList<Card> cards = new ArrayList<Card>();
 	
 
 	public Hand() {

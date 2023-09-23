@@ -22,10 +22,12 @@ public class Main {
 		
 		
 		// Testgin Area
-		//Test test = new Test();
+		//TestJaime test = new TestJaime();
 
 		//test.card();
-		// test.player();
+		//test.player();
 		//test.hand();
+		//test.playerHand();
+		
 	}
 }

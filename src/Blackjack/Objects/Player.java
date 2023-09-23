@@ -30,14 +30,14 @@ public class Player extends Hand {
 	
 	// ## Funciones de la clase
 	// Setter y getters
-	private void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
 	}
-    private String getName() {
+    public String getName() {
         return this.name;
     }
     
-    private void setBalance(int value) {
+    public void setBalance(int value) {
     	this.balance = value;
     }
     

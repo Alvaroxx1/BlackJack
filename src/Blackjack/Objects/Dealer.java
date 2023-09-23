@@ -4,7 +4,7 @@ public class Dealer extends Hand {
 	private String name = "";
 	
 	public Dealer() {
-		this.name = "*DEALER*";
+		this.name = "DEALER";
 		
 	}
 	
@@ -15,11 +15,19 @@ public class Dealer extends Hand {
 		return deck.popCard();
 	}
 	
-	public void cardToPlayer() {
-		
+	public void cardToPlayer(Player player, Deck deck) {
+		Card c = deck.popCard();
+		player.add(c);
+		System.out.println("Card dealt to *" + player.getName() + "* is : " + c.toString() + " [Score: null].");
 	}
 	
-	public void cardToDealer() {
-		
+	public void cardToDealer(Deck deck) {
+		Card c = deck.popCard();
+		this.add(c);
+		System.out.println("Card dealt to *" + this.name + "* is : " + c.toString() + " [Score: null].");
 	}
+	
+	/*public void popCardFromDeck(Deck deck) {
+		return deck.popCard();
+	}*/
 }

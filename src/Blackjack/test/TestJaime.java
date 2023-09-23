@@ -5,7 +5,7 @@ import Objects.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class Test {
+public class TestJaime {
     	// ##################
 	// ## TESTING AREA //
     public void test(){
@@ -82,5 +82,19 @@ public class Test {
     	
     	// print my hand
     	System.out.println(myhand.toString());
+    }
+    
+    public void playerHand() {
+    	System.out.println(" ");
+    	
+		Player p = new Player("jaime", 10);
+		
+		p.add(new Card("4h"));
+		p.add(new Card("5d"));
+		p.add(new Card("7h"));
+
+		
+		System.out.println(p.toString());
+    	System.out.println(p.getCards().toString());
     }
 }
