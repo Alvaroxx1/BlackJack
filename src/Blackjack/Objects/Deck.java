@@ -11,15 +11,15 @@ public class Deck {
 	
 	public Deck() {
 		
-		Card mycard = new Card("4","h");
+		Card mycard = new Card("4h");
 		System.out.println(mycard.toString());
 		
-//		for(int n = 0;n<=3;n++) {
-//			for(int i = 2; i<10;i++) {
-//				
-//				
-//			}
-//		}
+		for(int n = 0;n<=3;n++) {
+			for(int i = 2; i<10;i++) {
+				this.cards.add(new Card(i+index[n]));
+				
+			}
+		}
 		
 	}
 	

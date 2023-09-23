@@ -12,6 +12,7 @@ public class Main {
 	
 	public static void main (String[] args) {
 		
+		Card mycard = new Card("4h");
 
 
 

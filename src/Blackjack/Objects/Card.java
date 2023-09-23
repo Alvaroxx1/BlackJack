@@ -7,9 +7,11 @@ public class Card {
 	private String suit;
 	
 	
-	public Card(String value,String suit) {
-		this.value = value;
-		this.suit = suit;
+	public Card(String value) {
+		String[] parts = value.split("");
+		
+		this.value = parts[0];
+		this.suit = parts[1];
 		
 	}
 	
