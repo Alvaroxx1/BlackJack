@@ -5,15 +5,18 @@ import java.util.Scanner;
 
 //import java.util.ArrayList;
 
-//import java.util.Scanner;
+import java.util.Scanner;
 
 
 public class Main {
 	
 	public static void main (String[] args) {
 
-		
+		Scanner scanner = new Scanner(System.in);
 		// Creating a Game
+        System.out.println("\n************************************************\n");		
+        System.out.println("*** Enter start to start game ***");
+        scanner.nextLine();		
 		Game game = new Game(1, 1);
 
 		game.presStart();
@@ -23,14 +26,7 @@ public class Main {
 
 
 
-		/*Scanner scanner = new Scanner(System.in);
-		Card mycard = new Card("4h");
-        System.out.println("\n************************************************\n");		
-        System.out.println("*** Enter to start game ***");
-        scanner.nextLine();
-        System.out.println("Card dealt to *Vaidas* is: ");
-        System.out.println("Card dealt to *Vaidas* is: ");
-        System.out.println("Card dealt to *Vaidas* is: ");
+
 		
 
 		
@@ -46,8 +42,8 @@ public class Main {
 		//test.playerHand();*/
 
 		
-		TestAlvaro a = new TestAlvaro();
-		a.mostrarCartas();
+//		TestAlvaro a = new TestAlvaro();
+//		a.mostrarCartas();
 
 	}
 }
