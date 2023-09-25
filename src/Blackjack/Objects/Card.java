@@ -27,5 +27,6 @@ public class Card {
 	public String toString() {
 		return this.value+this.suit;
 	}
+	
 
 }

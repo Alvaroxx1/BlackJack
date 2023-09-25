@@ -31,4 +31,13 @@ public class Hand {
 	public void clean() {
 		this.cards.clear();
 	}
+	
+	public int score() {
+		int score=0;
+		// Imprimiento array de jugadores
+		for (Card card : this.cards) { 		      
+	           score += Integer.parseInt(card.getId()) ; 		
+	      }
+		return score;
+	}
 }

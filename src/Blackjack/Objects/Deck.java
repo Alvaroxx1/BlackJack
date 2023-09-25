@@ -1,5 +1,5 @@
 package Objects;
-
+import java.util.Random;
 import test.*;
 import java.util.ArrayList;
 
@@ -8,7 +8,7 @@ public class Deck {
 	private String[] suits = {"d","c","h","s"};
 	
 	private ArrayList<Card> cards = new ArrayList<Card>();
-	
+	Random random = new Random();
 	// Constructor
 	public Deck() {
 		
@@ -39,7 +39,13 @@ public class Deck {
 	}
 	
 	public Card popCard() {
-		return this.cards.remove(0);
+		int randNum = random.nextInt(32);
+		
+		while (cards.equals(randNum)&&randNum ==0) {
+			randNum = random.nextInt(32);
+		}
+		
+		return this.cards.remove(randNum);
 	}
 	
 	public int countCards() {

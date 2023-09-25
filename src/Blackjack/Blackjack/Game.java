@@ -52,11 +52,12 @@ public class Game {
     	System.out.println("\n*** Table view***");
     	
     	// Print dealers hand
-    	System.out.println("Dealer has: " + dealer.getCards().toString() + " [Score: null]");
+    	System.out.println("Dealer has: " + dealer.getCards().toString() + " [Score: "+dealer.score()+"].");
     	
     	// Print Players hands
 		for (Player player : players) { 		      
-	           System.out.println("Player *" + player.getName() + "* has: " + player.getCards() + " [Score: null]."); 		
+	           System.out.println("Player *" + player.getName() + "* has: " + player.getCards() + " [Score: "+player.score()+"]."); 	
+	           player.score();
 	      }
     }
 }
