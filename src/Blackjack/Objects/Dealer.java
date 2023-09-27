@@ -24,8 +24,9 @@ public class Dealer extends Hand {
 	
 	public void cardToDealer(Deck deck) {
 		Card c = deck.popCard();
-		this.add(c);
-		System.out.println("Card dealt to *" + this.name + "* is : " + c.toString() + " [Score: "+c.getId()+"].");
+		//this.add(c);
+		this.add(new Card("Ah"));
+		System.out.println("Card dealt to *" + this.name + "* is : " + c.toString() + " [Score: "+ this.score() +"].");
 	}
 	
 	/*public void popCardFromDeck(Deck deck) {
