@@ -1,2 +1,6 @@
 /bin/
 /bin/Blackjack/
+.metadata/
+.classpath
+.project
+.settings/
