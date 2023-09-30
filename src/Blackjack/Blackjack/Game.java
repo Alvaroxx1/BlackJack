@@ -1,10 +1,9 @@
 package Blackjack;
-
-import Objects.*;
 import java.util.ArrayList;
+import Objects.*;
+
 
 public class Game {
-
     Dealer dealer = new Dealer();
     Deck deck = new Deck();
     ArrayList<Player> players = new ArrayList<Player>();
@@ -17,10 +16,7 @@ public class Game {
         }
     }	
 
-    public void presStart(){
-        System.out.println("Press enter to start.(skipped)"); 
-    }
-    
+
     // only one round for this hw1
     public void round() {
     	int countround = 0;
@@ -46,6 +42,7 @@ public class Game {
     		// numeros de rondas para HW1 
     		countround++;
     	}
+
     }
     
     public static void tableView(Dealer dealer, ArrayList<Player> players) {
