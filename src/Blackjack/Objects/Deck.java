@@ -11,11 +11,7 @@ public class Deck {
 	Random random = new Random();
 	// Constructor
 	public Deck() {
-		
-
-		//Card mycard = new Card("4h");
-		//System.out.println(mycard.toString());
-		
+		// Creating all card combinations
 		for(int n = 0;n<=3;n++) 
 		{
 			// From 2 to 9
