@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class Dealer extends Hand {
 	private String name = "";
-	private static Scanner in = new Scanner(System.in);
 
 	public Dealer() {
 		this.name = "DEALER";
@@ -24,37 +23,25 @@ public class Dealer extends Hand {
 		System.out.println("Card dealt to *" + this.name + "* is : " + c.toString() + " [Score: "+ this.score() +"].");
 	}
 
-	public void askHitOrStand(Player player, Scanner IN) {
+	public void askHitOrStand(Player player) {
 		System.out.println("*** Choose your action ***");
 		System.out.println("***    [hit, stand]    ***");
-		System.out.println("");
 		
-		//String chooseAction = "hit";
-		//String chooseAction = "stand";
+		Scanner xx = new Scanner(System.in);
+		String chooseAction = xx.nextLine();
 		
-		String chooseAction = "";
-		
-	    IN.close();
-		
-		IN = new Scanner(System.in);
-		chooseAction = IN.next(); 
-		IN.close();
+		//System.out.println(" is there a next? " + IN.hasNext());
+		System.out.println("The choosen value is: " + chooseAction);
 		
 		
+	//String chooseAction = "hit"
+	//String chooseAction = "stand";
+
 		
-		//int x = inputclass.in.nextInt();
-		
-		System.out.println("El valor de x es: " + chooseAction);
-		
-		//player.setAction(chooseAction);
+		player.setAction(chooseAction);
 		System.out.println("Your action: " + player.getAction());
-		//inputclass.in.close();
 		
+		xx.close();
 	}
 
 }
-
-//class inputclass
-//{
-//    static Scanner in = new Scanner(System.in);
-//}

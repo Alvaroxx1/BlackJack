@@ -6,24 +6,25 @@ import java.util.Scanner;
 
 
 public class Main {
-
-	public static final Scanner IN = new Scanner(System.in);
+	
 	public static void main (String[] args) {
-    	Scanner scnr = new Scanner(System.in);
-		presStartToCreateAGame(scnr);
-
+		
+		// the working scanner object created here in main
+    	//Scanner scnr = new Scanner(System.in);
+		presStartToCreateAGame();
 
 		// Creating a Game
 		Game game = new Game(1, 1);
-		game.round(scnr);
+		game.round();
 
 	}
 	
-    public static void presStartToCreateAGame(Scanner scnr){
+    public static void presStartToCreateAGame(/*Scanner scnr*/){
     	System.out.println("\n************************************************\n");		
         System.out.println("*** Enter start to start game ***");
         String i;
         //i = scnr.nextLine();
+        //scnr.close();
     }
     
 	public static void test () {
@@ -42,9 +43,4 @@ public class Main {
 		*  testA.mostrarCartas();
 		*/
 	}
-}
-
-class inputclass
-{
-    static Scanner in = new Scanner(System.in);
 }
