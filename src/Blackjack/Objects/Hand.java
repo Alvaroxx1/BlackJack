@@ -7,6 +7,7 @@ import java.util.Hashtable;
 
 public class Hand {
 	private boolean bust = false; // this variable will be used to know if a player lost the round.
+	private String action = "stand";
 	private ArrayList<Card> cards = new ArrayList<Card>();
 	private Dictionary<String, Integer> dict= new Hashtable<String, Integer>();
 	
@@ -55,5 +56,13 @@ public class Hand {
 	        score += this.dict.get(card.getId());
 	      }
 		return score;
+	}
+	
+	public void setAction(String action) {
+		this.action = action;
+	}
+	
+	public String getAction() {
+		return this.action;
 	}
 }

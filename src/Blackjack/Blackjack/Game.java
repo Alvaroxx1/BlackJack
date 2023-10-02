@@ -1,7 +1,7 @@
 package Blackjack;
 import java.util.ArrayList;
 import Objects.*;
-
+import java.util.Scanner;
 
 public class Game {
     Dealer dealer = new Dealer();
@@ -18,7 +18,7 @@ public class Game {
 
 
     // only one round for this hw1
-    public void round() {
+    public void round(Scanner IN) {
     	int countround = 0;
     	while (countround < 1){
     		
@@ -38,6 +38,10 @@ public class Game {
     		
     		// just print none
     		System.out.println("\nnone");
+    		
+    		// Dealer ask to each player (for homework2 there is only one player
+    		dealer.askHitOrStand(players.get(0), IN);
+    		
     		
     		// numeros de rondas para HW1 
     		countround++;

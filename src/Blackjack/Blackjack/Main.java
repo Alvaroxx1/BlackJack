@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
 
-
+	public static final Scanner IN = new Scanner(System.in);
 	public static void main (String[] args) {
     	Scanner scnr = new Scanner(System.in);
 		presStartToCreateAGame(scnr);
@@ -15,7 +15,7 @@ public class Main {
 
 		// Creating a Game
 		Game game = new Game(1, 1);
-		game.round();
+		game.round(scnr);
 
 	}
 	
@@ -23,7 +23,7 @@ public class Main {
     	System.out.println("\n************************************************\n");		
         System.out.println("*** Enter start to start game ***");
         String i;
-        i = scnr.nextLine();
+        //i = scnr.nextLine();
     }
     
 	public static void test () {
@@ -42,4 +42,9 @@ public class Main {
 		*  testA.mostrarCartas();
 		*/
 	}
+}
+
+class inputclass
+{
+    static Scanner in = new Scanner(System.in);
 }

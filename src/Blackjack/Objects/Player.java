@@ -49,4 +49,5 @@ public class Player extends Hand {
     public String toString() {
     	return "[Name: " + this.name + ",  Balance: " + this.balance +"]";
     }
+
 }
