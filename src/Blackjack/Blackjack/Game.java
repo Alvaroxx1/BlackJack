@@ -9,6 +9,12 @@ public class Game {
     
 	// Constructor
     public Game(int number_players, int number_deck){    	
+		// press Enter to start the game
+    	System.out.println("\n************************************************\n");		
+        System.out.println("*** Enter start to start game ***");
+
+		Main.scannerObjectString();
+
     	// Creating n players 
         for (int i = 0; i < number_deck; i++){
             this.players.add(new Player());
@@ -34,15 +40,15 @@ public class Game {
     		// Table view
     		tableView(this.dealer, this.players);
     		
-    		
-    		// just print none
-    		System.out.println("\nnone");
-    		
     		// Dealer ask to each player (for homework2 there is only one player
-    		dealer.askHitOrStand(players.get(0));
-    		
-    		
-    		// numeros de rondas para HW1 
+    		while (dealer.askHitOrStand(players.get(0))){
+    			System.out.println("Your action: " + players.get(0).getAction());
+        	}
+    		System.out.println("Your action: " + players.get(0).getAction());
+        		
+			System.out.println(Main.verbose ? players.get(0).getName() + " choosed " + players.get(0).getAction(): "" );
+
+			// numeros de rondas para HW1 
     		countround++;
     	}
 

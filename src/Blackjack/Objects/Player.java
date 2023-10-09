@@ -1,7 +1,5 @@
 package Objects;
 
-import java.util.Scanner;
-
 public class Player extends Hand {
 
 	private String name;
@@ -14,7 +12,7 @@ public class Player extends Hand {
     }
 	// sobrecarga del constructor
 	public Player() {
-        Scanner scannerObjet = new Scanner(System.in);
+		
         // # a ths pevel it is set to a only one player name
         // System.out.println("Enter name:");
         // String name = scannerObjet.nextLine();
@@ -25,7 +23,7 @@ public class Player extends Hand {
         //System.out.println("Set balance.");
 
 		this.balance = 10;
-        scannerObjet.close();
+
 	}
 	
 	// ## Funciones de la clase

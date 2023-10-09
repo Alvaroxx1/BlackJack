@@ -6,25 +6,22 @@ import java.util.Scanner;
 
 
 public class Main {
-	
+	public static Boolean verbose = false; // for debugging option
 	public static void main (String[] args) {
-		
-		// the working scanner object created here in main
-    	//Scanner scnr = new Scanner(System.in);
-		presStartToCreateAGame();
-
 		// Creating a Game
 		Game game = new Game(1, 1);
 		game.round();
 
 	}
 	
-    public static void presStartToCreateAGame(/*Scanner scnr*/){
-    	System.out.println("\n************************************************\n");		
-        System.out.println("*** Enter start to start game ***");
-        String i;
-        //i = scnr.nextLine();
-        //scnr.close();
+    public static String scannerObjectString(/*Scanner scnr*/){
+    	Scanner scnr = new Scanner(System.in);
+        String s = scnr.nextLine();
+
+		// this scanner should be closed and open when calling this method
+		// but it is not working in that way.
+		// scnr.close();
+        return s;
     }
     
 	public static void test () {
