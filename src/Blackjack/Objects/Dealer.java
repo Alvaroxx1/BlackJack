@@ -1,8 +1,8 @@
 package Objects;
 
-import Blackjack.Main;
 import java.util.ArrayList;
-import java.util.Random;
+
+import Blackjack.Main;
 
 public class Dealer extends Hand {
 	private String name = "";
@@ -20,7 +20,7 @@ public class Dealer extends Hand {
 	public void cardToPlayer(Player player, Deck deck) {
 		Card c = deck.popCard();
 		player.add(c);
-		System.out.println("Card dealt to *" + player.getName() + "* is : " + c.toString() + " [Score: "+player.score()+"].");
+		System.out.println("Card dealt to *" + player.getName() + "* is : " + c.toString() + " [Score: "+c.getId()+"].");
 	}
 	
 	public void cardToDealer(Deck deck) {
@@ -35,7 +35,7 @@ public class Dealer extends Hand {
 		Card c = deck.popCard();
 		this.addHidden(c);
 		//this.add(new Card("Ah"));
-		System.out.println("Card dealt to *" + this.name + "* is : " + "Xx" + " [Score: "+ this.score() +"].");
+		System.out.println("Card dealt to *" + this.name + "* is : " + "Xx" + " [Score: "+ "X" +"].\n");
 	}
 
 	public void addHidden (Card card) {
@@ -43,7 +43,11 @@ public class Dealer extends Hand {
 	}
 
 	public void revealHiddenCard(){
-		this.add(this.hiddencards.remove(0));
+		Card c = this.hiddencards.remove(0);
+		System.out.println("***********************************");
+		System.out.println("Show " + this.name + "'s second card is: " + c.toString() + " [Score: " + c.getId() + "]");
+		System.out.println("***********************************");
+		// this.add(this.hiddencards.remove(0));
 	}
 
 	public ArrayList<Card> getHiddenCards(){

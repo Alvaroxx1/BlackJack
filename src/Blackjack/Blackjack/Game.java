@@ -71,7 +71,7 @@ public class Game {
     }
     
     public static void tableView(Dealer dealer, ArrayList<Player> players) {
-    	System.out.println("\n*** Table view***");
+    	System.out.println("*** Table view***");
     	
     	// Print dealers hand
     	System.out.println("Dealer has: " + dealer.getCards() + dealer.countHiddenCards() + " [Score: "+dealer.score()+"].");
@@ -90,8 +90,8 @@ public class Game {
 		System.out.println(players.get(0).getName() + "'s score: " + players.get(0).score());
 
 		if (players.get(0).score() > dealer.score() &&  !(players.get(0).score() > 21) && !(dealer.score() > 21))
-			System.out.println("Player win");
+			System.out.println(players.get(0).getName() +  " win.");
 		else
-			System.out.println("Player loses");
+			System.out.println(players.get(0).getName() +  " loses.");
 	}
 }
