@@ -3,3 +3,4 @@ This project is about creating a simple version of BlackJack game, as a homework
 
 - HW1 finished.
 - HW2 finished.
+- HW3 finished.
