@@ -1,6 +1,9 @@
 package Blackjack;
 import java.util.ArrayList;
-import Objects.*;
+
+import Objects.Dealer;
+import Objects.Deck;
+import Objects.Player;
 
 public class Game {
     Dealer dealer = new Dealer();
@@ -44,7 +47,7 @@ public class Game {
     		tableView(this.dealer, this.players);
     		
     		// Dealer ask to each player (for homework2 there is only one player
-    		while (dealer.askHitOrStand(players.get(0))){
+    		while (dealer.askHitOrStand(players.get(0)) &&  !(players.get(0).score() > 21) && !(dealer.score() > 21)){
     			System.out.println("Your action: " + players.get(0).getAction());
 
 				// If player choose to hit, dealer give him another card

@@ -44,10 +44,10 @@ public class Dealer extends Hand {
 
 	public void revealHiddenCard(){
 		Card c = this.hiddencards.remove(0);
-		System.out.println("***********************************");
+		System.out.println("************************************************");
 		System.out.println("Show " + this.name + "'s second card is: " + c.toString() + " [Score: " + c.getId() + "]");
-		System.out.println("***********************************");
-		// this.add(this.hiddencards.remove(0));
+		System.out.println("************************************************");
+		this.add(c);
 	}
 
 	public ArrayList<Card> getHiddenCards(){
