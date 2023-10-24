@@ -45,7 +45,10 @@ public class Hand {
 		return cardsString;
 	}
 
-	public void clean() {
+	/*
+	 * Drop all cards from hand
+	 */
+	public void dropAllCards() {
 		this.cards.clear();
 	}
 	

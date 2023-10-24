@@ -73,7 +73,7 @@ public class TestJaime {
     	System.out.println(myhand.toString());
     	
     	// cleaning hand 
-    	myhand.clean();
+    	myhand.dropAllCards();
     	
     	// Addind cards in different order
     	myhand.add(threecard);

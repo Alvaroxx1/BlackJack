@@ -1,6 +1,9 @@
 package Objects;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.concurrent.TimeUnit;
 
 import Blackjack.Main;
 
@@ -61,10 +64,25 @@ public class Dealer extends Hand {
 			return "";
 	}
 	public boolean askHitOrStand(Player player) {
+		String [] playerchoises = {"hit", "stand"};
 		System.out.println("");
 		System.out.println("*** Choose your action ***");
 		System.out.println("***    [hit, stand]    ***");
-		player.setAction(Main.scannerObjectString());
+		System.out.println();
+		// TimeUtils.sleepFor(1, TimeUnit.SECONDS);
+		
+		player.setAction(playerchoises[new Random().nextInt(playerchoises.length)]);
+		
+		Main.wait(1000);	
+		
+		// try{
+		// Thread.sleep(1000);
+		// } catch (InterruptedException e) {
+  		// Thread.currentThread().interrupt();
+		// }
+
+		// disabled manuel player input for testing.
+		// player.setAction(Main.scannerObjectString());
 		return player.isStand();	
 	}
 

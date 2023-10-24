@@ -14,9 +14,11 @@ public class Game {
     public Game(int number_players, int number_deck){    	
 		// press Enter to start the game
     	System.out.println("\n************************************************\n");		
-        System.out.println("*** Enter start to start game ***");
+        System.out.println("*** The game is starting...***");
+    	System.out.println("\n************************************************\n");		
 
-		Main.scannerObjectString();
+		// // Disabled - fasting testing
+		// Main.scannerObjectString();
 
     	// Creating n players 
         for (int i = 0; i < number_deck; i++){
@@ -28,10 +30,13 @@ public class Game {
     // only one round for this hw1
     public void round() {
     	int countround = 0;
-    	while (countround < 1){
+    	while (countround < 5){
+
+    	System.out.println("\n************************************************\n");		
+        System.out.println("*** Round number: " + countround + " ***");
+    	System.out.println("\n************************************************\n");		
     		
     		// dealer give card to player
-    		
     		dealer.cardToPlayer(players.get(0), this.deck);
 
     		// dealer give card to dealer
@@ -67,6 +72,14 @@ public class Game {
 
 			// # check round score and winner.
 			roundScores(this.dealer, this.players);
+
+			System.out.println("check");
+
+			// Clear all hands
+			this.dealer.dropAllCards();
+			this.players.get(0).dropAllCards();
+
+			//Restar
 			// numeros de rondas para HW1 
     		countround++;
     	}

@@ -23,6 +23,18 @@ public class Main {
 		// scnr.close();
         return s;
     }
+
+	public static void wait(int ms)
+	{
+		try
+		{
+			Thread.sleep(ms);
+		}
+	    catch(InterruptedException ex)
+		{
+			Thread.currentThread().interrupt();
+	    }
+	}
     
 	public static void test () {
 		/* Here can be tested specific modules.
