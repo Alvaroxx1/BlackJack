@@ -28,12 +28,13 @@ public class Game {
 
 
     // only one round for this hw1
-    public void round() {
+    public void rounds(int rounds) {
     	int countround = 0;
-    	while (countround < 5){
+    	while (countround < rounds){
 
     	System.out.println("\n************************************************\n");		
         System.out.println("*** Round number: " + countround + " ***");
+        System.out.println("*** cards left in deck: " + this.deck.countCards() + " ***");
     	System.out.println("\n************************************************\n");		
     		
     		// dealer give card to player
