@@ -23,14 +23,14 @@ public class Dealer extends Hand {
 	public void cardToPlayer(Player player, Deck deck) {
 		Card c = deck.popCard();
 		player.add(c);
-		System.out.println("Card dealt to *" + player.getName() + "* is : " + c.toString() + " [Score: "+c.getId()+"].");
+		System.out.println("Card dealt to *" + player.getName() + "*\t is : " + c.toString() + " [Score: "+c.getId()+"].");
 	}
 	
 	public void cardToDealer(Deck deck) {
 		Card c = deck.popCard();
 		this.add(c);
 		//this.add(new Card("Ah"));
-		System.out.println("Card dealt to *" + this.name + "* is : " + c.toString() + " [Score: "+ this.score() +"].");
+		System.out.println("Card dealt to *" + this.name + "*\t is : " + c.toString() + " [Score: "+ this.score() +"].");
 	}
 	
 	// overload function to handle hidden cards
@@ -38,7 +38,7 @@ public class Dealer extends Hand {
 		Card c = deck.popCard();
 		this.addHidden(c);
 		//this.add(new Card("Ah"));
-		System.out.println("Card dealt to *" + this.name + "* is : " + "Xx" + " [Score: "+ "X" +"].\n");
+		System.out.println("Card dealt to *" + this.name + "*s\t is : " + "Xx" + " [Score: "+ "X" +"].\n");
 	}
 
 	public void addHidden (Card card) {
@@ -71,7 +71,11 @@ public class Dealer extends Hand {
 		System.out.println();
 		// TimeUtils.sleepFor(1, TimeUnit.SECONDS);
 		
-		player.setAction(playerchoises[new Random().nextInt(playerchoises.length)]);
+		// player.setAction(playerchoises[new Random().nextInt(playerchoises.length)]);
+		
+		// disabled manuel player input for testing.
+		player.setAction(Main.scannerObjectString());
+		
 		
 		Main.wait(1000);	
 		
@@ -81,8 +85,6 @@ public class Dealer extends Hand {
   		// Thread.currentThread().interrupt();
 		// }
 
-		// disabled manuel player input for testing.
-		// player.setAction(Main.scannerObjectString());
 		return player.isStand();	
 	}
 

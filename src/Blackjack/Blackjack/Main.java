@@ -9,8 +9,8 @@ public class Main {
 	public static Boolean verbose = false; // for debugging option
 	public static void main (String[] args) {
 		// Creating a Game
-		Game game = new Game(1, 1);
-		game.rounds(10); // max number of round on this game.
+		Game game = new Game(3, 1);
+		game.rounds(1); // max number of round on this game.
 
 	}
 	
