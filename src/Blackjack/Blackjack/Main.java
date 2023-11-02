@@ -10,7 +10,7 @@ public class Main {
 	public static void main (String[] args) {
 		// Creating a Game
 		Game game = new Game(1, 1);
-		game.rounds(5); // max number of round on this game.
+		game.rounds(10); // max number of round on this game.
 
 	}
 	

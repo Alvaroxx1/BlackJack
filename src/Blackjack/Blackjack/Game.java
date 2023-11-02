@@ -33,7 +33,7 @@ public class Game {
     	while (countround < rounds){
 
     	System.out.println("\n************************************************\n");		
-        System.out.println("*** Round number: " + countround + " ***");
+        System.out.println("*** Round number: " + (countround + 1) + " ***");
         System.out.println("*** cards left in deck: " + this.deck.countCards() + " ***");
     	System.out.println("\n************************************************\n");		
     		

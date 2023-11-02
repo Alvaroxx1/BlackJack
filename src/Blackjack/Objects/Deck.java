@@ -35,13 +35,7 @@ public class Deck {
 	}
 	
 	public Card popCard() {
-		int randNum = random.nextInt(32);
-		
-		while (cards.equals(randNum)&&randNum ==0) {
-			randNum = random.nextInt(32);
-		}
-		
-		return this.cards.remove(randNum);
+		return this.cards.remove(0); // this will throw exception when no more cards in deck
 	}
 	
 	public int countCards() {
