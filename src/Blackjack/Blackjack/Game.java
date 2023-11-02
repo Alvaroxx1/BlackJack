@@ -7,7 +7,9 @@ import Objects.Player;
 
 public class Game {
     Dealer dealer = new Dealer();
-    Deck deck = new Deck();
+    // Declare the deck card
+    Deck deck;
+    
     ArrayList<Player> players = new ArrayList<Player>();
     
 	// Constructor
@@ -29,6 +31,8 @@ public class Game {
 			// name = scannerObjectString();
             this.players.add(new Player(name, 10));
         }
+        // Initilize the number of Decks
+        deck = new Deck(number_deck);
     }	
 
 
