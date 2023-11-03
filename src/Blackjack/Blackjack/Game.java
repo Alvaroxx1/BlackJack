@@ -13,7 +13,8 @@ public class Game {
     ArrayList<Player> players = new ArrayList<Player>();
     
 	// Constructor
-    public Game(int number_players, int number_deck){    	
+    public Game(int number_players, int number_deck){    
+		Main.CLS();	
 		// press Enter to start the game
     	System.out.println("\n************************************************");		
         System.out.println("*** The game is starting...***");
@@ -69,15 +70,20 @@ public class Game {
     		dealer.cardToDealer(this.deck, true);
 			Main.wait(3000);	
 			
+			// clear screen
+			Main.CLS();
     		// Table view
     		tableView(this.dealer, this.players);
     		
 			// Dealer interact with each player 
 			for (Player player : players) { 		      
 				System.out.println("Player " + player.getName() + " turn:");
-				System.out.println("Press enter to receive cards.");
+				System.out.println("Press enter to reveal your cards.");
     			System.out.println("\n************************************************");		
 				Main.scannerObjectString();
+
+				// revealing player cards
+				System.out.println(player.getCards());
 				// Dealer ask to current player (for homework2 there is only one player
 				while (dealer.askHitOrStand(player) &&  !(player.score() > 21) && !(dealer.score() > 21)){
 					System.out.println(player.getName() +" action is: " + player.getAction());

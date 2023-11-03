@@ -11,8 +11,8 @@ public class TestAlvaro {
     }
 
     public void mostrarCartas(){
-		Deck mydeck = new Deck();
-		mydeck.display();
+		//Deck mydeck = new Deck();
+		//mydeck.display();
     }
 
 

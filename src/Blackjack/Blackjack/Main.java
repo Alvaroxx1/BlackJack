@@ -1,13 +1,12 @@
 package Blackjack;
-//import Objects.*;
-import test.*;
-
+import java.io.IOException;
 import java.util.Scanner;
-
+import java.io.IOException;
 
 public class Main {
 	public static Boolean verbose = false; // for debugging option
-	public static void main (String[] args) {
+	// public static void main (String[] args) {
+	public static void main(String [] args) throws IOException, InterruptedException {
 		// Creating a Game
 		Game game = new Game(3, 1);
 		game.rounds(1); // max number of round on this game.
@@ -51,5 +50,26 @@ public class Main {
 		*  TestAlvaro testA = new TestAlvaro();
 		*  testA.mostrarCartas();
 		*/
+	}
+    // public static void CLS() throws IOException, InterruptedException {
+    public static void CLS() {
+		try
+		{
+			final String os = System.getProperty("os.name");
+
+			System.out.println(os);
+			
+			if (os.contains("Windows"))
+			{
+				// Runtime.getRuntime().exec("cls");
+				new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+
+			}
+			else
+			{
+				Runtime.getRuntime().exec("clear");
+			}
+		}
+		catch (IOException | InterruptedException ex) {}
 	}
 }
