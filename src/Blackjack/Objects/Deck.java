@@ -51,9 +51,24 @@ public class Deck {
 	           System.out.println(card); 		
 	      }
 	}
+
 	
 	public Card popCard() {
-		return this.cards.remove(0); // this will throw exception when no more cards in deck
+		Card poppedCard;
+		
+		if(this.cards.size() > 10) {
+			
+			poppedCard = this.cards.remove(0);
+			this.temp.add(poppedCard);
+			// this will throw exception when no more cards in deck
+			return poppedCard; 	
+		}
+		else {
+			shuffleTempIntoMainDeck();
+			poppedCard = this.cards.remove(0);
+			this.temp.add(poppedCard);
+			return poppedCard;
+		}
 	}
 	
 	public int countCards() {
