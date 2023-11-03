@@ -39,10 +39,14 @@ public class Player extends Hand {
     	this.balance = value;
     }
     
-    public int getBalance(int value) {
+    public int getBalance() {
     	return this.balance;
     }
     
+    public int updateBalance(int value){
+        this.balance += value;
+        return this.balance;
+    }
     // toString()
     public String toString() {
     	return "[Name: " + this.name + ",  Balance: " + this.balance +"]";

@@ -12,6 +12,7 @@ public class Game {
     Deck deck;
     
     ArrayList<Player> players = new ArrayList<Player>();
+	int delayTime = 500;
     
 	// Constructor
     public Game(int number_players, int number_deck){    
@@ -39,6 +40,9 @@ public class Game {
         }
         // Initilize the number of Decks
         deck = new Deck(number_deck);
+
+		System.out.println("\nPress enter to start.");
+		Main.scannerObjectString();
     }	
 
 
@@ -47,20 +51,22 @@ public class Game {
     	int countround = 0;
     	while (countround < rounds){
 
-    	System.out.println("\n************************************************");		
-        System.out.println("*** Round number: " + (countround + 1) + " ***");
-        System.out.println("*** cards left in deck: " + this.deck.countCards() + " ***");
-    	System.out.println("\n************************************************");		
-		Main.wait(2000);	
+			Main.CLS();
+			Welcome.printWelcome();
+			System.out.println("\n************************************************");		
+			System.out.println("*** Round number: " + (countround + 1) + " ***");
+			System.out.println("*** cards left in deck: " + this.deck.countCards() + " ***");
+			System.out.println("\n************************************************");		
+			Main.wait(delayTime);	
 			// dealer give cards to each player
 			for (Player player : players) { 		      
 				dealer.cardToPlayer(player, this.deck);
-				Main.wait(1000);	
+				Main.wait(delayTime);	
 		   }
 
     		// dealer give card to dealer
     		dealer.cardToDealer(this.deck);
-			Main.wait(1000);	
+			Main.wait(delayTime);	
    
 			// give a space to second group of card given by Dealer
 			System.out.println("");
@@ -68,7 +74,7 @@ public class Game {
 			// dealer give cards to each player
 			for (Player player : players) { 		      
 				dealer.cardToPlayer(player, this.deck);
-				Main.wait(1000);	
+				Main.wait(delayTime);	
 		   }
     		
 			// dealer give a HIDDEN card to dealer
@@ -84,25 +90,39 @@ public class Game {
 			for (Player player : players) { 		      
 				// clear screen
 				Main.CLS();
+				Menu.Welcome.printWelcome();
 				// Table view
-				tableView(this.dealer, this.players, false);
+				tableView(this.dealer, this.players, true);
     			System.out.println("\n************************************************");		
-				System.out.println("Player " + player.getName() + " turn:");
-				System.out.println("Press enter to reveal your cards.");
-    			System.out.println("\n************************************************");		
-				Main.scannerObjectString();
+				System.out.println("Player " + Main.fixedLengthString(player.getName(), 10) + " turn:");
+				System.out.println("Your cards are: " + player.getCards() + " [Score: " + player.score() + "]");
+				// System.out.println("Press enter to reveal your cards.");
+    			System.out.println("************************************************");		
+				// Main.scannerObjectString();
 
 				// revealing player cards
-				System.out.println(player.getCards());
-				// Dealer ask to current player (for homework2 there is only one player
-				while (dealer.askHitOrStand(player) &&  !(player.score() > 21) && !(dealer.score() > 21)){
+				// System.out.println(player.getCards());
+
+				// Dealer ask to current player (for homework2 there is only one player, for miniproject added nplayers
+				while (!player.isBust() && dealer.askHitOrStand(player)) {
 					System.out.println(player.getName() +" action is: " + player.getAction());
+
+					// check message value
+					// System.out.println(("Is this hand's player busted?: " + player.isBust()));
+					// System.out.println(("Currend hand score: " + player.score()));
 
 					// If player choose to hit, dealer give him another card
 					if (player.isStand())
 							dealer.cardToPlayer(player, this.deck);
+
+					// Print message if got bust
+					// System.out.println(("Is this hand's player busted after receiving a card?: " + player.isBust()));
+					// System.out.println(("Currend hand score: " + player.score()));
+
+					if (player.isBust()) System.out.println("You got Busted!");
+					else System.out.println("You continue plying in this round.");
 				}
-				System.out.println(player.getName() + " action is: " + player.getAction());
+				// System.out.println(player.getName() + " action is: " + player.getAction()); // Resquired on homework originally.
 
         		
 				System.out.println(Main.verbose ? player.getName() + " choosed " + player.getAction(): "" );
@@ -118,9 +138,7 @@ public class Game {
 			tableView(this.dealer, this.players, true);
 
 			// # check round score and winner.
-			// roundScores(this.dealer, this.players);
-
-			System.out.println("scores disabled due implementing nplayers. check");
+			roundScores(this.dealer, this.players);
 
 			// Clear all hands
 			this.dealer.dropAllCards();
@@ -129,38 +147,65 @@ public class Game {
 			//Restar
 			// numeros de rondas para HW1 
     		countround++;
+
+				System.out.println("Press enter to go to next round...");
+    			System.out.println("\n************************************************");		
+				Main.scannerObjectString();
     	}
 
     }
     
     public static void tableView(Dealer dealer, ArrayList<Player> players, boolean showPlayers) {
+		if (!showPlayers) Welcome.printWelcome();
     	System.out.println("\n************************************************");		
     	System.out.println("*** Table view***");
     	
-    	// Print dealers hand
-    	System.out.println("Dealer has: " + dealer.getCards() + dealer.countHiddenCards() + " [Score: "+dealer.score()+"].");
-		// System.out.println("Dealer Hidden card: " + dealer.getHiddenCards().toString());
-    	
-		
 		// Print Players hands
 		if (showPlayers) {
 			for (Player player : players) { 		      
-				System.out.println("Player *" + player.getName() + "* has: " + player.getCards() + " [Score: "+player.score()+"]."); 	
-				player.score();
+				System.out.println("Player *" + Main.fixedLengthString(player.getName(), 10) + "* has: " + player.getCards()
+				+ " [Score: " + player.score()+"]"
+				+ " [Balance: " + player.getBalance() + "]."
+				+ " [Status: " + (player.isBust() ? "BUSTED!." : "- ") + "]."); 	
 			}
-			System.out.println("\n************************************************");		
    		 }
+
+    	// Print dealers hand
+    	System.out.println("          Dealer has: " + dealer.getCards() + dealer.countHiddenCards() + " [Score: "+dealer.score()+"].");
+		// System.out.println("Dealer Hidden card: " + dealer.getHiddenCards().toString());
+		System.out.println("\n************************************************");		
 	}
 
     public static void roundScores(Dealer dealer, ArrayList<Player> players) {
-    	System.out.println("\n***********************************");
 		// Print dealer Score
-		System.out.println(dealer.getName() + "'s score: " + dealer.score());
-		System.out.println(players.get(0).getName() + "'s score: " + players.get(0).score());
+		// System.out.println(dealer.getName() + "'s score: " + dealer.score());
+		
+		// Show Dealer Score
+		System.out.println(dealer.getName() + " - " + dealer.score());
 
-		if (players.get(0).score() > dealer.score() &&  !(players.get(0).score() > 21) && !(dealer.score() > 21))
-			System.out.println(players.get(0).getName() +  " win.");
-		else
-			System.out.println(players.get(0).getName() +  " loses.");
+		// Check each player score
+		for (Player player : players){
+
+			System.out.println(player.getName() + " - " + player.score());
+			if (player.isBust()){
+				System.out.println("Player is busted, loosing -1 bet.");
+				player.updateBalance(-1);
+			}
+			else
+				if (player.score() > dealer.score()){
+					System.out.println("WIN: getting 2 bets.");
+					player.updateBalance(2);
+				}
+				else{
+					System.out.println("DRAW: Taking 1 bet back.");
+					player.updateBalance(1);
+				}
+
+
+			// if (players.get(0).score() > dealer.score() &&  !(players.get(0).score() > 21) && !(dealer.score() > 21))
+				// System.out.println(players.get(0).getName() +  " win.");
+			// else
+				// System.out.println(players.get(0).getName() +  " loses.");
+		}
 	}
 }

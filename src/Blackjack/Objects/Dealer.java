@@ -23,14 +23,14 @@ public class Dealer extends Hand {
 	public void cardToPlayer(Player player, Deck deck) {
 		Card c = deck.popCard();
 		player.add(c);
-		System.out.println("Card dealt to *" + player.getName() + "*\t is : " + c.toString() + " [Score: "+c.getId()+"].");
+		System.out.println("Card dealt to *" + Main.fixedLengthString(player.getName(), 10) + "   *\t is : " + c.toString() + " [Score: "+c.getId()+"]" + " [Balance: " + player.getBalance() + "].");
 	}
 	
 	public void cardToDealer(Deck deck) {
 		Card c = deck.popCard();
 		this.add(c);
 		//this.add(new Card("Ah"));
-		System.out.println("Card dealt to *" + this.name + "*\t is : " + c.toString() + " [Score: "+ this.score() +"].");
+		System.out.println("Card dealt to *" + Main.fixedLengthString(this.name, 10) + "   *\t is : " + c.toString() + " [Score: "+ this.score() +"].");
 	}
 	
 	// overload function to handle hidden cards
@@ -38,7 +38,7 @@ public class Dealer extends Hand {
 		Card c = deck.popCard();
 		this.addHidden(c);
 		//this.add(new Card("Ah"));
-		System.out.println("Card dealt to *" + this.name + "*s\t is : " + "Xx" + " [Score: "+ "X" +"].\n");
+		System.out.println("Card dealt to *" + Main.fixedLengthString(this.name, 10) + "   *\t is : " + "Xx" + " [Score: "+ "X" +"].\n");
 	}
 
 	public void addHidden (Card card) {
@@ -46,6 +46,8 @@ public class Dealer extends Hand {
 	}
 
 	public void revealHiddenCard(){
+		Main.CLS();
+		Menu.Welcome.printWelcome();
 		Card c = this.hiddencards.remove(0);
 		System.out.println("************************************************");
 		System.out.println("Show " + this.name + "'s second card is: " + c.toString() + " [Score: " + c.getId() + "]");
@@ -63,28 +65,22 @@ public class Dealer extends Hand {
 		else
 			return "";
 	}
+
 	public boolean askHitOrStand(Player player) {
-		String [] playerchoises = {"hit", "stand"};
 		System.out.println("");
-		System.out.println("*** Choose your action ***");
-		System.out.println("***    [hit, stand]    ***");
+		System.out.println(">>> Choose your action <<<");
+		System.out.println(">>>    [hit, stand]    <<<");
 		System.out.println();
-		// TimeUtils.sleepFor(1, TimeUnit.SECONDS);
 		
+		// // Disabled manual input for testing.
+		// // auto choosing is 50% hit, 50% stand
+		// String [] playerchoises = {"hit", "stand"}; // for automatization
+		// Main.wait(1000);	
 		// player.setAction(playerchoises[new Random().nextInt(playerchoises.length)]);
 		
-		// disabled manuel player input for testing.
+		// Enabled manual input for hit and stand.
 		player.setAction(Main.scannerObjectString());
 		
-		
-		Main.wait(1000);	
-		
-		// try{
-		// Thread.sleep(1000);
-		// } catch (InterruptedException e) {
-  		// Thread.currentThread().interrupt();
-		// }
-
 		return player.isStand();	
 	}
 

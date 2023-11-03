@@ -12,9 +12,11 @@ This project is about creating a simple version of BlackJack game applying conce
 # Testing
 - set a random choose hit/stand, over rounds. (add config to change it faster).
 
-# Bugs found to fix.
+# Known Bugs found to fix.
 [fixed] - reset hand cards before a new round.
 [fixed] - popCard taking random 32 value get error when less then 32 card (collition by chance) in deck.
+[ ] How players will play: 0, 'pato'.
+[ ] Printed messgae 'Press enter to next player continue..." after las player playing shoud not be displayed.
 
 # Task Flow Queue
 [x] Delete press enter to start.

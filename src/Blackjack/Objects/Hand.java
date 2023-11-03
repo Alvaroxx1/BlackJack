@@ -72,4 +72,14 @@ public class Hand {
 	public boolean isStand(){
 		return this.action.equals("hit")? true: false;
 	}
+
+	/**
+	 * a hand is considered 'Bust' when the adition score of all cards in hand is over 21,
+	 * so The owner of this hand had loss in the current round.
+	 * @return The hand is Busted or not.
+	 */
+	public boolean isBust(){
+		this.bust = this.score() > 21;
+		return this.bust;
+	}
 }
