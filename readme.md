@@ -18,7 +18,7 @@ This project is about creating a simple version of BlackJack game applying conce
 [fixed] - popCard taking random 32 value get error when less then 32 card (collition by chance) in deck.
 [ ] How players will play: 0, 'pato'.
 [ ] Printed messgae 'Press enter to next player continue..." after las player playing shoud not be displayed.
-[ ] Negative bet when not more coins.
+[x] Negative bet when not more coins.
 
 # Task Flow Queue
 [x] Delete press enter to start.
@@ -26,8 +26,8 @@ This project is about creating a simple version of BlackJack game applying conce
 [x] implements n rounds in the game.
 [x] implements n players.
 [x] Fix count score for all players, need implements bust.
-[ ] Join the table, left the table.
-[ ] can play next round if player has enough coins.
+[x] Join the table, left the table.
+[x] can play next round if player has enough coins.
 [ ] Global asking if want to continue next round
     - if yes: continue.
     - if no: all players left the table.
