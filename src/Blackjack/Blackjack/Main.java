@@ -8,7 +8,7 @@ public class Main {
 	public static void main(String [] args) throws IOException, InterruptedException {
 		// Creating a Game
 		Game game = new Game(3, 1);
-		game.rounds(10); // max number of round on this game.
+		game.rounds(); // max number of round on this game.
 
 	}
 	
