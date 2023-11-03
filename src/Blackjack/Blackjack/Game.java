@@ -38,7 +38,7 @@ public class Game {
 
 			name = Main.scannerObjectString();
 			// name = scannerObjectString();
-            this.players.add(new Player(name, 2));
+            this.players.add(new Player(name, 3));
         }
         // Initilize the number of Decks
         deck = new Deck(number_deck);
@@ -49,15 +49,20 @@ public class Game {
 
 
     // only one round for this hw1
-    public void rounds() {
+    public int rounds() {
     	int countround = 0;
-    	while (countround >= 0){
+    	while (countround >= 0 && !players.isEmpty()){
 
 			Main.CLS();
 			Welcome.printWelcome();
 
 			// Pay bet to join this round.
-			payBet(this.players);
+			System.out.println("\n************************************************");		
+			System.out.println("*** Paying $1 Bet to join this round ***");
+			payBet(this.players, this.leftplayers);
+
+			// players who left the table
+			tableLeftPlayers(this.leftplayers);
 
 			System.out.println("\n************************************************");		
 			System.out.println("*** Round number: " + (countround + 1) + " ***");
@@ -164,6 +169,11 @@ public class Game {
 			Main.scannerObjectString();
     	}
 
+		System.out.println("no more players in the table");
+		Main.wait(3000);
+		System.err.println(" GAME OVER...");
+		Main.wait(3000);
+		return 0;
     }
     
     public static void tableView(Dealer dealer, ArrayList<Player> players, boolean showPlayers) {
@@ -228,20 +238,40 @@ public class Game {
 		}
 	}
 
-	public static void payBet(ArrayList<Player> players, ArrayList<Player> leftPlayers){
-    	System.out.println("\n************************************************");		
-		System.out.println("*** Paying $1 Bet to join this round ***");
+	public static int payBet(ArrayList<Player> players, ArrayList<Player> leftPlayers){
+		Player movingPlayer = null;
 		for (Player player : players){
-			if (player.getBalance() > 0){
+			if (player.getBalance() > 1){
 				player.updateBalance(-1);
 				System.out.println("- " + player.getName() + " Bet $1.");
 			}
 			else {
 				System.out.println(player.getName() + " left the table.");
-				System.out.println("Reason: Blance cero.");
-				System.out.println("el que pierde esta en index: " + players.indexOf(player));
+				// System.out.println("Reason: Blance cero.");
+				// System.out.println("el que pierde esta en index: " + players.indexOf(player));
+				// leftPlayers.add(players.remove(players.indexOf(player)));
+				
+				// if (!players.isEmpty())
+				movingPlayer = players.remove(players.indexOf(player));
+				leftPlayers.add(movingPlayer);
+
+				// System.out.println(leftPlayers);
+				// System.out.println(players);
+				payBet(players, leftPlayers);
+				return 0;
 			}
 		}
+		return 0;
 
+	}
+
+	public static void tableLeftPlayers(ArrayList<Player> leftPlayers){
+		if (!leftPlayers.isEmpty()){
+			System.out.println("\n************************************************");		
+			System.out.println("*** LEFT PLAYERS ***");
+			for (Player leftplayer : leftPlayers){
+				System.out.println("\n- " + leftplayer.getName() + " [Balance: " + leftplayer.getBalance() + "] ");
+			} 
+		}
 	}
 }
