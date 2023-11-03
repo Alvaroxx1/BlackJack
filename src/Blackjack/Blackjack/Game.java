@@ -1,10 +1,10 @@
 package Blackjack;
 import java.util.ArrayList;
 
+import Menu.Welcome;
 import Objects.Dealer;
 import Objects.Deck;
 import Objects.Player;
-import Menu.Welcome;
 
 public class Game {
     Dealer dealer = new Dealer();
@@ -36,7 +36,7 @@ public class Game {
 
 			name = Main.scannerObjectString();
 			// name = scannerObjectString();
-            this.players.add(new Player(name, 10));
+            this.players.add(new Player(name, 2));
         }
         // Initilize the number of Decks
         deck = new Deck(number_deck);
@@ -49,7 +49,7 @@ public class Game {
     // only one round for this hw1
     public void rounds(int rounds) {
     	int countround = 0;
-    	while (countround < rounds){
+    	while (countround >= 0){
 
 			Main.CLS();
 			Welcome.printWelcome();
@@ -120,14 +120,14 @@ public class Game {
 					// System.out.println(("Currend hand score: " + player.score()));
 
 					if (player.isBust()) System.out.println("You got Busted!");
-					else System.out.println("You continue plying in this round.");
+					else System.out.println("\nYou continue playing in this round.");
 				}
 				// System.out.println(player.getName() + " action is: " + player.getAction()); // Resquired on homework originally.
 
         		
 				System.out.println(Main.verbose ? player.getName() + " choosed " + player.getAction(): "" );
     
-				System.out.println("Press enter to next player continue...");
+				System.out.println("\n\nPress enter to next player continue...");
 				Main.scannerObjectString();
 			}
 
@@ -142,15 +142,16 @@ public class Game {
 
 			// Clear all hands
 			this.dealer.dropAllCards();
+			for (Player player : players) player.dropAllCards();
 			// this.players.get(0).dropAllCards();
 
 			//Restar
 			// numeros de rondas para HW1 
     		countround++;
 
-				System.out.println("Press enter to go to next round...");
-    			System.out.println("\n************************************************");		
-				Main.scannerObjectString();
+			System.out.println("\n\n>> Press enter to go to next round...");
+			System.out.println("\n************************************************");		
+			Main.scannerObjectString();
     	}
 
     }
@@ -177,28 +178,33 @@ public class Game {
 	}
 
     public static void roundScores(Dealer dealer, ArrayList<Player> players) {
+		System.out.println("*** FINAL ROUND SCORES ***");
 		// Print dealer Score
 		// System.out.println(dealer.getName() + "'s score: " + dealer.score());
 		
 		// Show Dealer Score
-		System.out.println(dealer.getName() + " - " + dealer.score());
+		System.out.println("- " + dealer.getName() + " [Score: " + dealer.score() + "].");
 
 		// Check each player score
 		for (Player player : players){
 
-			System.out.println(player.getName() + " - " + player.score());
+			System.out.println("\n- " + player.getName() + " [Score: " + player.score() + "] ");
 			if (player.isBust()){
-				System.out.println("Player is busted, loosing -1 bet.");
+				System.out.print("╚══> BUSTED, loosing -1 bet.\n");
 				player.updateBalance(-1);
 			}
 			else
 				if (player.score() > dealer.score()){
-					System.out.println("WIN: getting 2 bets.");
+					System.out.print("╚══> WIN: getting 2 bets.\n");
 					player.updateBalance(2);
 				}
-				else{
-					System.out.println("DRAW: Taking 1 bet back.");
+				else if (player.score() == dealer.score()){
+					System.out.print("╚══> DRAW: Taking 1 bet back.\n ");
 					player.updateBalance(1);
+				}
+				else{
+					System.out.print("╚══> LOSS: loosing -1 bet.\n ");
+					player.updateBalance(-1);
 				}
 
 
