@@ -53,10 +53,15 @@ public class Game {
 
 			Main.CLS();
 			Welcome.printWelcome();
+
+			// Pay bet to join this round.
+			payBet(this.players);
+
 			System.out.println("\n************************************************");		
 			System.out.println("*** Round number: " + (countround + 1) + " ***");
 			System.out.println("*** cards left in deck: " + this.deck.countCards() + " ***");
-			System.out.println("\n************************************************");		
+			System.out.println("************************************************");		
+    		System.out.println("*** Dealing cards ***");
 			Main.wait(delayTime);	
 			// dealer give cards to each player
 			for (Player player : players) { 		      
@@ -140,6 +145,9 @@ public class Game {
 			// # check round score and winner.
 			roundScores(this.dealer, this.players);
 
+			// show updated players balances
+			tableBalances(this.players);
+
 			// Clear all hands
 			this.dealer.dropAllCards();
 			for (Player player : players) player.dropAllCards();
@@ -207,11 +215,24 @@ public class Game {
 					player.updateBalance(-1);
 				}
 
-
-			// if (players.get(0).score() > dealer.score() &&  !(players.get(0).score() > 21) && !(dealer.score() > 21))
-				// System.out.println(players.get(0).getName() +  " win.");
-			// else
-				// System.out.println(players.get(0).getName() +  " loses.");
 		}
+	}
+
+	public static void tableBalances(ArrayList<Player> players){
+    	System.out.println("\n************************************************");		
+		System.out.println("*** PLAYERS BALANCES UPDATED ***");
+		for (Player player : players){
+			System.out.println("\n- " + player.getName() + " [Balance: " + player.getBalance() + "] ");
+		}
+	}
+
+	public static void payBet(ArrayList<Player> players){
+    	System.out.println("\n************************************************");		
+		System.out.println("*** Paying $1 Bet to join this round ***");
+		for (Player player : players){
+			player.updateBalance(-1);
+			System.out.println("- " + player.getName() + " Bet $1.");
+		}
+
 	}
 }
