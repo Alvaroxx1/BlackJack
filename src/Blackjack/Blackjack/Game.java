@@ -168,10 +168,13 @@ public class Game {
 			System.out.println("\n************************************************");		
 			Main.scannerObjectString();
     	}
-
+		Main.CLS();
+		Menu.Welcome.printWelcome();
 		System.out.println("no more players in the table");
 		Main.wait(3000);
-		System.err.println(" GAME OVER...");
+		System.out.println(" ... so  sad...");
+		Main.wait(3000);
+		Menu.GameOver.printGameOver();
 		Main.wait(3000);
 		return 0;
     }
@@ -270,7 +273,7 @@ public class Game {
 			System.out.println("\n************************************************");		
 			System.out.println("*** LEFT PLAYERS ***");
 			for (Player leftplayer : leftPlayers){
-				System.out.println("\n- " + leftplayer.getName() + " [Balance: " + leftplayer.getBalance() + "] ");
+				System.out.println("\n- " + leftplayer.getName()) ;
 			} 
 		}
 	}
