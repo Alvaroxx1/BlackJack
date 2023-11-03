@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import Objects.Dealer;
 import Objects.Deck;
 import Objects.Player;
+import Menu.Welcome;
 
 public class Game {
     Dealer dealer = new Dealer();
@@ -15,13 +16,17 @@ public class Game {
 	// Constructor
     public Game(int number_players, int number_deck){    
 		Main.CLS();	
+		Welcome.printWelcome();
 		// press Enter to start the game
     	System.out.println("\n************************************************");		
         System.out.println("*** The game is starting...***");
     	System.out.println("\n************************************************");		
 
-		// // Disabled - fasting testing
-		// Main.scannerObjectString();
+		// ! here need a 1-3 player error handler
+		System.out.println("How many player will play [1-3]: ");
+		number_players = Integer.valueOf(Main.scannerObjectString());
+
+		// System.out.println(number_players);
 
     	// Creating n players 
 		String name;
@@ -50,12 +55,12 @@ public class Game {
 			// dealer give cards to each player
 			for (Player player : players) { 		      
 				dealer.cardToPlayer(player, this.deck);
-				Main.wait(1500);	
+				Main.wait(1000);	
 		   }
 
     		// dealer give card to dealer
     		dealer.cardToDealer(this.deck);
-			Main.wait(1500);	
+			Main.wait(1000);	
    
 			// give a space to second group of card given by Dealer
 			System.out.println("");
@@ -63,20 +68,21 @@ public class Game {
 			// dealer give cards to each player
 			for (Player player : players) { 		      
 				dealer.cardToPlayer(player, this.deck);
-				Main.wait(1500);	
+				Main.wait(1000);	
 		   }
     		
 			// dealer give a HIDDEN card to dealer
     		dealer.cardToDealer(this.deck, true);
 			Main.wait(3000);	
 			
-			// clear screen
-			Main.CLS();
-    		// Table view
-    		tableView(this.dealer, this.players);
     		
 			// Dealer interact with each player 
 			for (Player player : players) { 		      
+				// clear screen
+				Main.CLS();
+				// Table view
+				tableView(this.dealer, this.players, false);
+    			System.out.println("\n************************************************");		
 				System.out.println("Player " + player.getName() + " turn:");
 				System.out.println("Press enter to reveal your cards.");
     			System.out.println("\n************************************************");		
@@ -102,12 +108,12 @@ public class Game {
 			dealer.revealHiddenCard();
 
 			// Second Table view checking revealing card
-			tableView(this.dealer, this.players);
+			tableView(this.dealer, this.players, true);
 
 			// # check round score and winner.
 			// roundScores(this.dealer, this.players);
 
-			System.out.println("check");
+			System.out.println("scores disabled due implementing nplayers. check");
 
 			// Clear all hands
 			this.dealer.dropAllCards();
@@ -120,20 +126,24 @@ public class Game {
 
     }
     
-    public static void tableView(Dealer dealer, ArrayList<Player> players) {
+    public static void tableView(Dealer dealer, ArrayList<Player> players, boolean showPlayers) {
     	System.out.println("\n************************************************");		
     	System.out.println("*** Table view***");
     	
     	// Print dealers hand
     	System.out.println("Dealer has: " + dealer.getCards() + dealer.countHiddenCards() + " [Score: "+dealer.score()+"].");
 		// System.out.println("Dealer Hidden card: " + dealer.getHiddenCards().toString());
-    	// Print Players hands
-		for (Player player : players) { 		      
-	           System.out.println("Player *" + player.getName() + "* has: " + player.getCards() + " [Score: "+player.score()+"]."); 	
-	           player.score();
-	      }
-    	System.out.println("\n************************************************");		
-    }
+    	
+		
+		// Print Players hands
+		if (showPlayers) {
+			for (Player player : players) { 		      
+				System.out.println("Player *" + player.getName() + "* has: " + player.getCards() + " [Score: "+player.score()+"]."); 	
+				player.score();
+			}
+			System.out.println("\n************************************************");		
+   		 }
+	}
 
     public static void roundScores(Dealer dealer, ArrayList<Player> players) {
     	System.out.println("\n***********************************");
