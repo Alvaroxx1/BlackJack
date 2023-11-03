@@ -73,7 +73,11 @@ public class Game {
     		
 			// dealer give a HIDDEN card to dealer
     		dealer.cardToDealer(this.deck, true);
-			Main.wait(3000);	
+			
+			// // Here could wait 3 second to next screen or, press enter to continue
+			// Main.wait(3000);	
+			System.out.println("Press to continue...");
+			Main.scannerObjectString();
 			
     		
 			// Dealer interact with each player 
@@ -102,6 +106,9 @@ public class Game {
 
         		
 				System.out.println(Main.verbose ? player.getName() + " choosed " + player.getAction(): "" );
+    
+				System.out.println("Press enter to next player continue...");
+				Main.scannerObjectString();
 			}
 
 			// Reveal hidden card
