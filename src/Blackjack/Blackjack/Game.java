@@ -12,6 +12,8 @@ public class Game {
     Deck deck;
     
     ArrayList<Player> players = new ArrayList<Player>();
+    ArrayList<Player> leftplayers = new ArrayList<Player>();
+
 	int delayTime = 500;
     
 	// Constructor
@@ -47,7 +49,7 @@ public class Game {
 
 
     // only one round for this hw1
-    public void rounds(int rounds) {
+    public void rounds() {
     	int countround = 0;
     	while (countround >= 0){
 
@@ -226,12 +228,19 @@ public class Game {
 		}
 	}
 
-	public static void payBet(ArrayList<Player> players){
+	public static void payBet(ArrayList<Player> players, ArrayList<Player> leftPlayers){
     	System.out.println("\n************************************************");		
 		System.out.println("*** Paying $1 Bet to join this round ***");
 		for (Player player : players){
-			player.updateBalance(-1);
-			System.out.println("- " + player.getName() + " Bet $1.");
+			if (player.getBalance() > 0){
+				player.updateBalance(-1);
+				System.out.println("- " + player.getName() + " Bet $1.");
+			}
+			else {
+				System.out.println(player.getName() + " left the table.");
+				System.out.println("Reason: Blance cero.");
+				System.out.println("el que pierde esta en index: " + players.indexOf(player));
+			}
 		}
 
 	}
