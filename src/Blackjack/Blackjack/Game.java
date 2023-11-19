@@ -20,7 +20,10 @@ public class Game {
 	int delayTime = 500;
     
 	// Constructor
-    public Game(int number_players, int number_deck){    
+    public Game(int number_players, int number_deck){ 
+		
+		int DEFAULT_BALANCE = 3;
+
 		Main.CLS();	
 		Welcome.printWelcome();
 		// press Enter to start the game
@@ -56,21 +59,28 @@ public class Game {
 
 			name = Main.scannerObjectString();
 			// name = scannerObjectString();
-            this.players.add(new Player(name, 3));
+            this.players.add(new Player(name, DEFAULT_BALANCE));
         }
         // Initilize the number of Decks
         deck = new Deck(number_deck);
 
 		System.out.println("\nPress enter to start.");
 		Main.scannerObjectString();
+
+		this.rounds(players, leftplayers); // max number of round on this game.
+
     }	
 
 
     // only one round for this hw1
-    public int rounds() {
+    public int rounds(ArrayList<Player> players, ArrayList<Player> leftPlayers) {
     	int countround = 0;
+		// To handle to continue the round or not
+		String Round_Action = "";
+		Player movingPlayer = null;
+
     	while (countround >= 0 && !players.isEmpty()){
-			
+
 			Main.CLS();
 			Welcome.printWelcome();
 
@@ -82,7 +92,19 @@ public class Game {
 			// players who left the table
 			tableLeftPlayers(this.leftplayers);
 
-			System.out.println("\n************************************************");		
+			// Check is there are players in the table
+			if(players.isEmpty()){
+				
+				System.out.println("no more players in the table");
+				System.out.println("Press enter to exit...");
+				Main.scannerObjectString();
+				break;
+			}
+
+			System.out.println
+			
+			
+			("\n************************************************");		
 			System.out.println("*** Round number: " + (countround + 1) + " ***");
 			System.out.println("*** cards left in deck: " + this.deck.countCards() + " ***");
 			System.out.println("************************************************");		
@@ -153,7 +175,14 @@ public class Game {
 					else System.out.println("\nYou continue playing in this round.");
 					
 					System.out.println("***Choose you action to continue the game***\n"
-							+ "			*** [continue, end]    ***a");
+							+ "			*** [continue, end]    ***");
+					Round_Action = Main.scannerObjectString();
+
+					if(Round_Action.equals("end")){
+						movingPlayer = players.remove(players.indexOf(player));
+						leftPlayers.add(movingPlayer);
+					}
+
 				}
 				// System.out.println(player.getName() + " action is: " + player.getAction()); // Resquired on homework originally.
 
@@ -191,9 +220,9 @@ public class Game {
     	}
 		Main.CLS();
 		Menu.Welcome.printWelcome();
-		System.out.println("no more players in the table");
 		Main.wait(3000);
 		System.out.println(" ... so  sad...");
+		System.out.println("\n\n");
 		Main.wait(3000);
 		Menu.GameOver.printGameOver();
 		Main.wait(3000);
@@ -230,12 +259,14 @@ public class Game {
 		System.out.println("- " + dealer.getName() + " [Score: " + dealer.score() + "].");
 
 		// Check each player score
+		// Busted and Loss is zero because we already substract one coin in the 
+		// beginning of the round
 		for (Player player : players){
 
 			System.out.println("\n- " + player.getName() + " [Score: " + player.score() + "] ");
 			if (player.isBust()){
 				System.out.print("╚══> BUSTED, loosing -1 bet.\n");
-				player.updateBalance(-1);
+				player.updateBalance(0);
 			}
 			else
 				if (player.score() > dealer.score()){
@@ -248,7 +279,7 @@ public class Game {
 				}
 				else{
 					System.out.print("╚══> LOSS: loosing -1 bet.\n ");
-					player.updateBalance(-1);
+					player.updateBalance(0);
 				}
 
 		}
@@ -265,7 +296,8 @@ public class Game {
 	public static int payBet(ArrayList<Player> players, ArrayList<Player> leftPlayers){
 		Player movingPlayer = null;
 		for (Player player : players){
-			if (player.getBalance() > 1){
+			//payment to enter the round
+			if (player.getBalance() >= 1){
 				player.updateBalance(-1);
 				System.out.println("- " + player.getName() + " Bet $1.");
 			}
