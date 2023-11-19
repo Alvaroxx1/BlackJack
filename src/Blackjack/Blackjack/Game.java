@@ -66,19 +66,12 @@ public class Game {
 
 		System.out.println("\nPress enter to start.");
 		Main.scannerObjectString();
-
-		this.rounds(players, leftplayers); // max number of round on this game.
-
     }	
 
 
     // only one round for this hw1
-    public int rounds(ArrayList<Player> players, ArrayList<Player> leftPlayers) {
+    public int rounds() {
     	int countround = 0;
-		// To handle to continue the round or not
-		String Round_Action = "";
-		Player movingPlayer = null;
-
     	while (countround >= 0 && !players.isEmpty()){
 
 			Main.CLS();
@@ -176,13 +169,7 @@ public class Game {
 					
 					System.out.println("***Choose you action to continue the game***\n"
 							+ "			*** [continue, end]    ***");
-					Round_Action = Main.scannerObjectString();
-
-					if(Round_Action.equals("end")){
-						movingPlayer = players.remove(players.indexOf(player));
-						leftPlayers.add(movingPlayer);
-					}
-
+					
 				}
 				// System.out.println(player.getName() + " action is: " + player.getAction()); // Resquired on homework originally.
 
