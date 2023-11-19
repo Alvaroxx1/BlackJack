@@ -13,7 +13,10 @@ public class Game {
     
     ArrayList<Player> players = new ArrayList<Player>();
     ArrayList<Player> leftplayers = new ArrayList<Player>();
-
+    
+    //Centinel Variable
+    Boolean check = true;
+    
 	int delayTime = 500;
     
 	// Constructor
@@ -27,7 +30,22 @@ public class Game {
 
 		// ! here need a 1-3 player error handler
 		System.out.println("How many player will play [1-3]: ");
-		number_players = Integer.valueOf(Main.scannerObjectString());
+		
+		while (check) {
+		    try {
+		        number_players = Integer.valueOf(Main.scannerObjectString());
+		        // If the user entered a number, the code will reach here
+		        check = false; // Exit the loop since a valid number is entered
+		    } catch (NumberFormatException e) {
+		        // If the user did not enter a number, the code will reach here
+		        System.out.println("Please enter a valid number.");
+		        // Optionally, you can add more instructions or prompt the user again
+		        check = true;
+		    }
+		}
+
+
+		
 
 		// System.out.println(number_players);
 
@@ -52,7 +70,7 @@ public class Game {
     public int rounds() {
     	int countround = 0;
     	while (countround >= 0 && !players.isEmpty()){
-
+			
 			Main.CLS();
 			Welcome.printWelcome();
 
@@ -133,6 +151,9 @@ public class Game {
 
 					if (player.isBust()) System.out.println("You got Busted!");
 					else System.out.println("\nYou continue playing in this round.");
+					
+					System.out.println("***Choose you action to continue the game***\n"
+							+ "			*** [continue, end]    ***a");
 				}
 				// System.out.println(player.getName() + " action is: " + player.getAction()); // Resquired on homework originally.
 

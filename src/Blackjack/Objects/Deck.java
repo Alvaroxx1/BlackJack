@@ -32,7 +32,7 @@ public class Deck {
 				}
 			}
 		}
-		shuffle();
+		// shuffle();
 	}
 	
 	// Implementation to get random cards
