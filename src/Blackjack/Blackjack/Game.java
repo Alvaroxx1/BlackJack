@@ -79,7 +79,8 @@ public class Game {
 
 			// Pay bet to join this round.
 			System.out.println("\n************************************************");		
-			System.out.println("*** Paying $1 Bet to join this round ***");
+			System.out.println("*** To play in this round need to pay $1 or $2 bet.***");
+			// System.out.println("*** Paying $1 Bet to join this round ***");
 			payBet(this.players, this.leftplayers);
 
 			// players who left the table
@@ -225,9 +226,10 @@ public class Game {
 		if (showPlayers) {
 			for (Player player : players) { 		      
 				System.out.println("Player *" + Main.fixedLengthString(player.getName(), 10) + "* has: " + player.getCards()
-				+ " [Score: " + player.score()+"]"
-				+ " [Balance: " + player.getBalance() + "]."
-				+ " [Status: " + (player.isBust() ? "BUSTED!." : "- ") + "]."); 	
+				+ " [Score: " + Main.fixedLengthString(Integer.toString(player.score()), 2) +"]"
+				+ " [Balance: " + player.getBalance() + "]"
+				+ " [Bet: " + Integer.toString(player.getBet()) + "]"
+				+ " [Status: " + (player.isBust() ? "BUSTED!" : "- ") + "]."); 	
 			}
    		 }
 
@@ -252,20 +254,20 @@ public class Game {
 
 			System.out.println("\n- " + player.getName() + " [Score: " + player.score() + "] ");
 			if (player.isBust()){
-				System.out.print("╚══> BUSTED, loosing -1 bet.\n");
+				System.out.print("╚══> BUSTED, loosing -" + Integer.toString(player.getBet()) + " bet.\n");
 				player.updateBalance(0);
 			}
 			else
 				if (player.score() > dealer.score()){
-					System.out.print("╚══> WIN: getting 2 bets.\n");
-					player.updateBalance(2);
+					System.out.print("╚══> WIN: getting " + Integer.toString(player.getBet() * 2) + " bets.\n");
+					player.updateBalance(player.getBet() * 2);
 				}
 				else if (player.score() == dealer.score()){
-					System.out.print("╚══> DRAW: Taking 1 bet back.\n ");
-					player.updateBalance(1);
+					System.out.print("╚══> DRAW: Taking " + Integer.toString(player.getBet()) + " bet back.\n ");
+					player.updateBalance(player.getBet());
 				}
 				else{
-					System.out.print("╚══> LOSS: loosing -1 bet.\n ");
+					System.out.print("╚══> LOSS: loosing -" + Integer.toString(player.getBet()) + " bet.\n ");
 					player.updateBalance(0);
 				}
 
@@ -282,11 +284,47 @@ public class Game {
 
 	public static int payBet(ArrayList<Player> players, ArrayList<Player> leftPlayers){
 		Player movingPlayer = null;
+		boolean error = false;
+		int oneBet = 0;
 		for (Player player : players){
+			// Asking how much bet do the player wants.
+			do {
+				try {
+					oneBet = 0;
+					do {
+						System.out.println("\n### ==> " + player.getName() + " your balance is: " + player.getBalance());
+						System.out.println("Please input your bet [1, 2] (Enter 0 to exit.): ");
+						oneBet = Integer.parseInt(Main.scannerObjectString());
+						error = false;
+						if (oneBet == 0){
+							System.out.println("--> " + player.getName() + " is leaving the table.");
+							break;
+						}
+						else if (!(oneBet >= 1 && oneBet <= 2)){
+							System.out.println("\n\n>>> You only can place one bet in this range! [1, 2]");
+							System.out.println("Please try again...");
+							System.out.println("");
+						}
+						else{
+							player.setBet(oneBet);
+							// System.out.println("Player " + player.getName() + "placed one bet: $" + player.getBet());
+						}
+					}
+					while (!(oneBet >= 0 && oneBet <= 2));
+						
+				}
+				catch (Exception e){
+					System.out.println("\n\n>>> Not a valid number!, please try again.");
+					error = true;
+				}
+			}
+			while (error);
+
+
 			//payment to enter the round
-			if (player.getBalance() >= 1){
-				player.updateBalance(-1);
-				System.out.println("- " + player.getName() + " Bet $1.");
+			if ((player.getBalance() - player.getBet()) >= 0 && player.getBet() > 0){
+				player.updateBalance(-player.getBet());
+				System.out.println("- " + player.getName() + " placed one bet of value: " + Integer.toString(player.getBet()));
 			}
 			else {
 				System.out.println(player.getName() + " left the table.");

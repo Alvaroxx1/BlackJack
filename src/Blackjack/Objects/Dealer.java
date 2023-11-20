@@ -23,7 +23,7 @@ public class Dealer extends Hand {
 	public void cardToPlayer(Player player, Deck deck) {
 		Card c = deck.popCard();
 		player.add(c);
-		System.out.println("Card dealt to *" + Main.fixedLengthString(player.getName(), 10) + "   *\t is : " + c.toString() + " [Score: "+c.getId()+"]" + " [Balance: " + player.getBalance() + "].");
+		System.out.println("Card dealt to *" + Main.fixedLengthString(player.getName(), 10) + "   *\t is : " + c.toString() + " [Score: "+c.getId()+"]" + " [Balance: " + player.getBalance() + "] " + "[Bet: " + Main.fixedLengthString(Integer.toString(player.getBet()), 3) + "].");
 	}
 	
 	public void cardToDealer(Deck deck) {

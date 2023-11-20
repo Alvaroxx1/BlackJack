@@ -4,6 +4,7 @@ public class Player extends Hand {
 
 	private String name;
 	private int balance;
+    private int bet;
 	
 	// Contructores
 	public Player(String name, int value) {
@@ -52,4 +53,15 @@ public class Player extends Hand {
     	return "[Name: " + this.name + ",  Balance: " + this.balance +"]";
     }
 
+    public int getBet(){
+        return this.bet;
+    }
+
+    public void setBet(int betValue){
+        this.bet = betValue;
+    }
+
+    public boolean betIsVoid (){
+        return (this.bet == 0);
+    }
 }
