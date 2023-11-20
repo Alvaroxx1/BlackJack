@@ -165,11 +165,11 @@ public class Game {
 					// System.out.println(("Is this hand's player busted after receiving a card?: " + player.isBust()));
 					// System.out.println(("Currend hand score: " + player.score()));
 
-					if (player.isBust()) System.out.println("You got Busted!");
-					else System.out.println("\nYou continue playing in this round.");
+					if (player.isBust()) System.out.println("\n>>> " + player.getName() + " got Busted!");
+					else System.out.println("\n>>> " + player.getName() + " continue playing in this round.");
 					
-					System.out.println("***Choose you action to continue the game***\n"
-							+ "			*** [continue, end]    ***");
+					// System.out.println("***Choose you action to continue the game***\n"
+							// + "			*** [continue, end]    ***");
 					
 				}
 				// System.out.println(player.getName() + " action is: " + player.getAction()); // Resquired on homework originally.
@@ -286,11 +286,13 @@ public class Game {
 		Player movingPlayer = null;
 		boolean error = false;
 		int oneBet = 0;
+
+
 		for (Player player : players){
 			// Asking how much bet do the player wants.
 			do {
 				try {
-					oneBet = 0;
+					oneBet = -1;
 					do {
 						System.out.println("\n### ==> " + player.getName() + " your balance is: " + player.getBalance());
 						System.out.println("Please input your bet [1, 2] (Enter 0 to exit.): ");
@@ -298,7 +300,9 @@ public class Game {
 						error = false;
 						if (oneBet == 0){
 							System.out.println("--> " + player.getName() + " is leaving the table.");
-							break;
+							// break; // disabled, making wrong leaving for next players.
+							player.setBet(0);
+							
 						}
 						else if (!(oneBet >= 1 && oneBet <= 2)){
 							System.out.println("\n\n>>> You only can place one bet in this range! [1, 2]");
@@ -319,8 +323,10 @@ public class Game {
 				}
 			}
 			while (error);
+		}
+		System.out.println("-------------------------------------------------------------\n");
 
-
+		for (Player player : players) {
 			//payment to enter the round
 			if ((player.getBalance() - player.getBet()) >= 0 && player.getBet() > 0){
 				player.updateBalance(-player.getBet());
@@ -338,7 +344,7 @@ public class Game {
 
 				// System.out.println(leftPlayers);
 				// System.out.println(players);
-				payBet(players, leftPlayers);
+				// payBet(players, leftPlayers);
 				return 0;
 			}
 		}
